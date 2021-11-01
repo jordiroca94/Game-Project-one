@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+  }
+
+  .counter{
+    display:flex; 
+    text-align:flex-end; 
+    justify-content:flex-end;
+    margin-right:100px;
+  }
+  
+  
+
+  
+  #canvas {
+    border: 5px solid black;
+  }
+  
+ 
