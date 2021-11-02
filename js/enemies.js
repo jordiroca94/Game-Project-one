@@ -7,6 +7,7 @@ class Enemies {
       this.speed = speed;
       this.size = 50;
       this.deadly = true; 
+      this.upscore = true; 
     }
   
     draw() {

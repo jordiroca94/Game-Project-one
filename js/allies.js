@@ -6,6 +6,8 @@ class Allies {
       this.color = "yellow";
       this.speed = speed;
       this.size = 50;
+      this.upscore = true;
+      this.deadly = true;
     }
   
     draw() {

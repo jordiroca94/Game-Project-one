@@ -6,9 +6,9 @@ class Game {
     this.obstacles = [];
     this.allies = [];
     this.enemies = []
+    this.projectiles = []
     this.player = null;
     this.gameIsOver = false;
-    this.score = 0;
 
   }
 
@@ -33,7 +33,21 @@ class Game {
             this.player.setDirection("left")
         }
    }
+
+   //EVENT LISTENER TO MOVE PROJECTILES
+
+   this.handleKeyup = (event) =>{
+     if(event.code === "Space"){
+       const projectile = new Projectile(this.ctx,this.player.x,this.player.y)
+       this.projectiles.push(projectile)
+       setInterval(()=>{
+        projectile.y+=20
+       },1*30);
+     }
+   }
+
    document.body.addEventListener("keydown",this.handleKeyDown);
+   document.body.addEventListener("keydown",this.handleKeyup);
    
    this.startLoop();
    }
@@ -75,10 +89,21 @@ class Game {
 
     this.checkCollisions();
     this.checkAlliesCollisions();
-    this.checkEnemiesCollisions()
+    this.checkEnemiesCollisions();
+    this.checkProjectilesCollisionsEnemies()
+    this.checkProjectilesCollisionsObstacles()
+    this.checkProjectilesCollisionsAllies()
+    
 
     //CLEAR CANVAS 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    //PAINT PROJECTILES 
+
+    this.projectiles.forEach((el) =>{
+      el.draw();
+    });
+     
 
     //DRAW PLAYER
     this.player.draw();
@@ -109,10 +134,64 @@ class Game {
     
     }
 
+    //COLISIONS
+
+    //BULLET COLISIONS:
+
+    checkProjectilesCollisionsEnemies(){
+      this.enemies.forEach((enemy,index)=>{
+        this.projectiles.forEach((projectile,el)=>{
+          if(projectile.didCollide(enemy)){
+            this.enemies.splice(index,1)
+            this.projectiles.splice(el,1)
+            if(enemy.upscore){
+              this.player.score+=10;
+              enemy.upscore = !enemy.upscore
+              console.log("score",this.player.score)
+              console.log("lives",this.player.lives)
+            }
+          }
+        })
+      })
+    }
+
+    checkProjectilesCollisionsObstacles(){
+    this.obstacles.forEach((obstacle)=>{
+      this.projectiles.forEach((projectile,el)=>{
+        if(projectile.didCollide(obstacle)){
+          this.projectiles.splice(el,1)
+        }
+      })
+    })
+    }
+
+    checkProjectilesCollisionsAllies(){
+      this.allies.forEach((ally,index)=>{
+        this.projectiles.forEach((projectile,el)=>{
+          if(projectile.didCollide(ally)){
+            this.allies.splice(index,1)
+            this.projectiles.splice(el,1)
+           if(ally.deadly){
+             this.player.lives--;
+             ally.deadly = !ally.deadly
+           }if(this.player.lives <=0){
+             this.gameIsOver = true; 
+           }
+          }
+        })
+      })
+    }
+
+    //PLAYERS COLIISIONS
+
     checkAlliesCollisions(){
-        this.allies.forEach((allies)=>{
+        this.allies.forEach((allies,index)=>{
             if(this.player.didCollide(allies)){
-                this.score+=50
+              if(allies.upscore){
+                this.player.score=+50;
+                allies.upscore = !allies.upscore
+                this.allies.splice(index,1);
+              }
             }
         });
     }
@@ -120,7 +199,6 @@ class Game {
     checkEnemiesCollisions() {
         this.enemies.forEach((enemies) => {
             if (this.player.didCollide(enemies)) {
-              console.log("line120")
             if(enemies.deadly){
                 this.player.lives--;
                 enemies.deadly = !enemies.deadly
@@ -134,7 +212,6 @@ class Game {
     checkCollisions() {
         this.obstacles.forEach((obstacles) => {
             if (this.player.didCollide(obstacles)) {
-              console.log("line120")
             if(obstacles.deadly){
                 this.player.lives--;
                 obstacles.deadly = !obstacles.deadly
@@ -144,4 +221,6 @@ class Game {
           }
         });
       }
+ 
+
 }
