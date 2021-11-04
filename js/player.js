@@ -3,12 +3,12 @@ class Player {
       this.canvas = canvas;
       this.ctx = this.canvas.getContext("2d");
       this.lives = lives;
-      this.size = 50;
+      this.size =50;
       this.x = 450;
       this.y =75;
       this.xDirection = 0;
       this.yDirection = 0;
-      this.speed = 6;
+      this.speed = 4;
       this.score = 0
     }
   
@@ -25,7 +25,7 @@ class Player {
          this.yDirection = -1;
          this.xDirection = 0;  
       } 
-      else if (direction === "down"){
+      else if (direction === "down"){ 
         this.yDirection = 1; 
         this.xDirection = 0;
       }else if (direction === "right"){
@@ -51,9 +51,15 @@ class Player {
     }
   
     draw() {
-      this.ctx.fillStyle = "red";
-      // fillRect(x, y, width, height)
-      this.ctx.fillRect(this.x, this.y, this.size, this.size);
+
+      const playerImg = new Image();
+    playerImg.src = "../images/playerboat4.png"
+    this.ctx.drawImage(playerImg, this.x, this.y, this.size, this.size);
+      
+    
+      // this.ctx.fillStyle = "red";
+      // // fillRect(x, y, width, height)
+      // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
   
     didCollide(obstacle) {
@@ -70,4 +76,6 @@ class Player {
         return false;
       }
     }
+
+  
   }

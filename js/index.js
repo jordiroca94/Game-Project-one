@@ -6,35 +6,36 @@ const buildDom = (html) => {
   // WELCOME SCREEN
   const buildWelcomeScreen = () => {
     buildDom(`
-    <div class="welcomeScreen">
-    <h1>This is the Welcome Screen</h1>
-    <button id="start-button">START GAME</button>
-    <br />
-    <div>
-    <h3>Instructions</h3>
-    </div>
-
+    <div class="welcomescreen">
+    <h1 class="gametitle">PIRATES OF THE CARIBBEAN</h1>
+    <h1 class="startheader blinkme">PRESS ENTER TO START THE GAME<h1>
+    <br/>
     </div>
     `);
-    const startButton = document.getElementById("start-button");
-    startButton.addEventListener("click", buildGameScreen);
+    
+
+    document.addEventListener('keyup', event => {
+      if (event.code === 'Enter') {
+        buildGameScreen()
+      }
+    })
+
   };
   
   // GAME SCREEN
   const buildGameScreen = () => {
     buildDom(`
-    
-    <div class="counter">
-        <p class="livesCount"> Lives = 0 </p>
-    </div>
-    <div id="game-board">
-    <canvas id="canvas" width="900" height="900"></canvas>
+    <div class="gamescreen">
+    <div class="lives"></div>
+    <div class="score"></div>
+    <div id="game-board" class="gameboard">
+    <canvas id="canvas" width="900" height="900"></canvas> 
     </div>  
-    <button id="end-button">End Game</button>
+    </div>
+  
     `);
   
-    const endButton = document.getElementById("end-button");
-    endButton.addEventListener("click", buildGameOverScreen);
+   
   
     const game = new Game();
     game.start();
@@ -50,8 +51,12 @@ const buildDom = (html) => {
     </section>
     `);
   
-    const restartButton = document.querySelector("button");
-    restartButton.addEventListener("click", buildGameScreen);
+    document.addEventListener('keyup', event => {
+      if (event.code === 'Enter') {
+        buildWelcomeScreen()
+      }
+    })
+
   };
   
   // When the window loads, then we will run the "buildSplashScreen" function

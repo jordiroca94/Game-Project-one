@@ -11,9 +11,13 @@ class Allies {
     }
   
     draw() {
-      // DRAW OBSTACLES
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.size, this.size);
+      
+      const alliImg = new Image();
+      alliImg.src = "../images/pirate.png"
+      this.ctx.drawImage(alliImg, this.x, this.y, this.size, this.size);
+
+      // this.ctx.fillStyle = this.color;
+      // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
   
     move() {

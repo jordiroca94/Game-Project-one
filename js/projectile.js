@@ -9,8 +9,13 @@ class Projectile {
     }
 
     draw() {
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.size, this.size);
+
+      const projImg = new Image();
+      projImg.src = "../images/proj.png"
+      this.ctx.drawImage(projImg, this.x, this.y, this.size, this.size);
+
+      // this.ctx.fillStyle = this.color;
+      // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
 
     didCollide(obstacle) {

@@ -10,9 +10,11 @@ class Obstacle {
     }
   
     draw() {
-      // DRAW OBSTACLES
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.size, this.size);
+      
+      const obsImg = new Image();
+      obsImg.src = "../images/barrel.png"
+      this.ctx.drawImage(obsImg, this.x, this.y, this.size, this.size);
+
     }
   
     move() {

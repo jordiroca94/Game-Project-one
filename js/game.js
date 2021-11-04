@@ -9,6 +9,9 @@ class Game {
     this.projectiles = []
     this.player = null;
     this.gameIsOver = false;
+    this.lives = 5;
+    this.score = 0;
+    
 
   }
 
@@ -17,6 +20,8 @@ class Game {
     // Save reference to canvas and Create ctx
     this.canvas = document.querySelector("canvas");
     this.ctx = canvas.getContext("2d");
+    this.drawLives();
+    this.drawScore()
 
     // Create a new player for the current game
     this.player = new Player(this.canvas, 5);
@@ -38,7 +43,9 @@ class Game {
 
    this.handleKeyup = (event) =>{
      if(event.code === "Space"){
-       const projectile = new Projectile(this.ctx,this.player.x,this.player.y)
+       console.log(this.player.x, this.player.size)
+       const projectile = new Projectile(this.ctx,this.player.x+20,this.player.y)
+       console.log('projectile', projectile)
        this.projectiles.push(projectile)
        setInterval(()=>{
         projectile.y+=20
@@ -57,22 +64,27 @@ class Game {
     //WE CREATE RANDOM OBSTACLES
     if (Math.random() > 0.99) {
         const x = Math.random() * this.canvas.width;
-        const y = this.canvas.height - 20;
+        const y = this.canvas.height;
         this.obstacles.push(new Obstacle(this.ctx, x, y, 1));
       }
 
-    if (Math.random() > 0.96) {
+    if (Math.random() > 0.97) {
         const x = Math.random() * this.canvas.width;
-        const y = this.canvas.height - 20;
+        const y = this.canvas.height;
         this.enemies.push(new Enemies(this.ctx, x, y, 1));
       }
 
-      if (Math.random() > 0.99) {
+      if (Math.random() > 0.992) {
         const x = Math.random() * this.canvas.width;
-        const y = this.canvas.height - 20;
+        const y = this.canvas.height;
         this.allies.push(new Allies(this.ctx, x, y, 1));
       }
-
+ 
+        // CLEAN ARRAYS TO OPTIMIZE 
+    
+    this.obstacles = this.obstacles.filter((el)=> el.y + el.size > 0)
+    this.enemies = this.enemies.filter((el)=> el.y + el.size > 0)
+    this.allies = this.allies.filter((el)=> el.y + el.size > 0)
     
 
     //UPDATE THE PLAYER AND RANDOM OBSTACLES
@@ -93,7 +105,10 @@ class Game {
     this.checkProjectilesCollisionsEnemies()
     this.checkProjectilesCollisionsObstacles()
     this.checkProjectilesCollisionsAllies()
+    this.drawLives()
+    this.drawScore()
     
+   
 
     //CLEAR CANVAS 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -145,10 +160,9 @@ class Game {
             this.enemies.splice(index,1)
             this.projectiles.splice(el,1)
             if(enemy.upscore){
-              this.player.score+=10;
+              this.score+=10;
               enemy.upscore = !enemy.upscore
-              console.log("score",this.player.score)
-              console.log("lives",this.player.lives)
+          
             }
           }
         })
@@ -172,9 +186,9 @@ class Game {
             this.allies.splice(index,1)
             this.projectiles.splice(el,1)
            if(ally.deadly){
-             this.player.lives--;
+             this.lives--;
              ally.deadly = !ally.deadly
-           }if(this.player.lives <=0){
+           }if(this.lives <=0){
              this.gameIsOver = true; 
            }
           }
@@ -188,7 +202,7 @@ class Game {
         this.allies.forEach((allies,index)=>{
             if(this.player.didCollide(allies)){
               if(allies.upscore){
-                this.player.score=+50;
+                this.score+=50;
                 allies.upscore = !allies.upscore
                 this.allies.splice(index,1);
               }
@@ -200,9 +214,9 @@ class Game {
         this.enemies.forEach((enemies) => {
             if (this.player.didCollide(enemies)) {
             if(enemies.deadly){
-                this.player.lives--;
+                this.lives--;
                 enemies.deadly = !enemies.deadly
-            }if(this.player.lives <=0){
+            }if(this.lives <=0){
             this.gameIsOver = true;
             }
           }
@@ -213,14 +227,33 @@ class Game {
         this.obstacles.forEach((obstacles) => {
             if (this.player.didCollide(obstacles)) {
             if(obstacles.deadly){
-                this.player.lives--;
+                this.lives--;
                 obstacles.deadly = !obstacles.deadly
-            }if(this.player.lives <=0){
+            }if(this.lives <=0){
             this.gameIsOver = true;
             }
           }
         });
       }
  
+      // LIVES 
+
+      drawLives(){
+        let indicator = document.querySelector(".lives")
+
+        let indicatorContent = "";
+        for(let i =0; i<this.lives; i++){
+          indicatorContent+= "<img src='../images/heart.png'/>"
+        }
+        indicator.innerHTML = indicatorContent
+      }
+
+      // SCORE 
+
+      drawScore(){
+        let indicator = document.querySelector(".score")
+
+        indicator.innerHTML = this.score
+      }
 
 }
