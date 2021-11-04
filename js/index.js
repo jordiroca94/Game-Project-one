@@ -29,7 +29,7 @@ const buildDom = (html) => {
     <div class="lives"></div>
     <div class="score"></div>
     <div id="game-board" class="gameboard">
-    <canvas id="canvas" width="900" height="900"></canvas> 
+    <canvas id="canvas" width="600" height="600"></canvas> 
     </div>  
     </div>
   

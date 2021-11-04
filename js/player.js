@@ -41,11 +41,11 @@ class Player {
     checkScreen() {
       if (this.y + this.size - this.size <= 0) {
         this.yDirection = 0;
-      } else if (this.y + this.size >= 900) {
+      } else if (this.y + this.size >= 600) {
         this.yDirection = 0;
       }else if(this.x + this.size -this.size <=0){
           this.xDirection =0;
-      }else if (this.x + this.size >=900){
+      }else if (this.x + this.size >=600){
           this.xDirection =0; 
       }
     }

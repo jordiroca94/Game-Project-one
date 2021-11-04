@@ -63,13 +63,13 @@ class Game {
    startLoop() {
     const loop = () => {
     //WE CREATE RANDOM OBSTACLES
-    if (Math.random() > 0.99) {
+    if (Math.random() > 0.995) {
         const x = Math.random() * this.canvas.width;
         const y = this.canvas.height;
         this.obstacles.push(new Obstacle(this.ctx, x, y, 1));
       }
 
-    if (Math.random() > 0.97) {
+    if (Math.random() > 0.99) {
         const x = Math.random() * this.canvas.width;
         const y = this.canvas.height;
         this.enemies.push(new Enemies(this.ctx, x, y, 1));
