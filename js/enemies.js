@@ -13,7 +13,7 @@ class Enemies {
     draw() {
       
       const enemyImg = new Image();
-      enemyImg.src = "../images/shark.png"
+      enemyImg.src = "./images/shark.png"
       this.ctx.drawImage(enemyImg, this.x, this.y, this.size, this.size);
     }
   

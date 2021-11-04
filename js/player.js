@@ -24,7 +24,8 @@ class Player {
       if (direction === "up"){
          this.yDirection = -1;
          this.xDirection = 0;  
-      } else if (direction === "down"){ 
+      } 
+      else if (direction === "down"){ 
         this.yDirection = 1; 
         this.xDirection = 0;
       }else if (direction === "right"){
@@ -52,7 +53,7 @@ class Player {
     draw() {
 
       const playerImg = new Image();
-    playerImg.src = "../images/playerboat4.png"
+    playerImg.src = "./images/playerboat4.png"
     this.ctx.drawImage(playerImg, this.x, this.y, this.size, this.size);
       
     
