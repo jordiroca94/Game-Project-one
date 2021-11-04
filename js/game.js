@@ -12,7 +12,7 @@ class Game {
     this.lives = 5;
     this.score = 0;
     this.piratesSong = new Audio()
-    this.piratesSong.src = "../music/song.mp3"
+    this.piratesSong.src = "music/song.mp3"
     
 
   }
@@ -27,7 +27,7 @@ class Game {
     this.lives = 5;
     this.score = 0; 
     this.piratesSong = new Audio()
-    this.piratesSong.src = "../music/song.mp3"
+    this.piratesSong.src = "music/song.mp3"
   }
   
   start() {
