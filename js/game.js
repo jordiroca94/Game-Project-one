@@ -12,13 +12,12 @@ class Game {
     this.lives = 5;
     this.score = 0;
     this.piratesSong = new Audio()
-    this.piratesSong.src = "music/song.mp3"
+    this.piratesSong.src = "/music/song.mp3"
     
 
   }
 
   reset(){
-    console.log("inside reset")
     this.obstacles = [];
     this.allies = [];
     this.enemies = []
@@ -27,7 +26,7 @@ class Game {
     this.lives = 5;
     this.score = 0; 
     this.piratesSong = new Audio()
-    this.piratesSong.src = "music/song.mp3"
+    this.piratesSong.src = "/music/song.mp3"
   }
   
   start() {
@@ -63,9 +62,7 @@ class Game {
 
    this.handleKeyup = (event) =>{
      if(event.code === "Space"){
-       console.log(this.player.x, this.player.size)
        const projectile = new Projectile(this.ctx,this.player.x+20,this.player.y)
-       console.log('projectile', projectile)
        this.projectiles.push(projectile)
        setInterval(()=>{
         projectile.y+=20

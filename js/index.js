@@ -2,10 +2,8 @@ var game = new Game();
 
 window.addEventListener('keyup', event => {
   if (event.code === 'Enter') {
-    console.log("game.gameIsOver: ",  game.gameIsOver)
     if(game.gameIsOver){
       buildGameScreen()
-      console.log("Game start!")
       game.start()
     }
   }
