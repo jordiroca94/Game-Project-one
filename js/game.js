@@ -8,24 +8,43 @@ class Game {
     this.enemies = []
     this.projectiles = []
     this.player = null;
-    this.gameIsOver = false;
+    this.gameIsOver = true;
     this.lives = 5;
     this.score = 0;
+    this.piratesSong = new Audio()
+    this.piratesSong.src = "../music/song.mp3"
     
 
   }
 
-   start() {
+  reset(){
+    console.log("inside reset")
+    this.obstacles = [];
+    this.allies = [];
+    this.enemies = []
+    this.projectiles = []
+    this.gameIsOver = true;
+    this.lives = 5;
+    this.score = 0; 
+    this.piratesSong = new Audio()
+    this.piratesSong.src = "../music/song.mp3"
+  }
+  
+  start() {
     // Append canvas to the DOM, create a Player and start the Canvas loop
     // Save reference to canvas and Create ctx
-
+    this.reset();
+    this.gameIsOver=false;
     this.canvas = document.querySelector("canvas");
     this.ctx = canvas.getContext("2d");
     this.drawLives();
-    this.drawScore()
-
+    this.drawScore();
+    this.piratesSong.play();
+    
+    
     // Create a new player for the current game
     this.player = new Player(this.canvas, 5);
+    this.player.reset();
     this.player.draw()
     //add event listener to move the player 
     this.handleKeyDown = (event) => {
@@ -63,13 +82,13 @@ class Game {
    startLoop() {
     const loop = () => {
     //WE CREATE RANDOM OBSTACLES
-    if (Math.random() > 0.995) {
+    if (Math.random() > 0.99) {
         const x = Math.random() * this.canvas.width;
         const y = this.canvas.height;
         this.obstacles.push(new Obstacle(this.ctx, x, y, 1));
       }
 
-    if (Math.random() > 0.99) {
+    if (Math.random() > 0.97) {
         const x = Math.random() * this.canvas.width;
         const y = this.canvas.height;
         this.enemies.push(new Enemies(this.ctx, x, y, 1));
@@ -142,6 +161,7 @@ class Game {
         window.requestAnimationFrame(loop);
           } else {
             buildGameOverScreen(this.score);
+            this.piratesSong.pause();
           }
         };
 
@@ -255,5 +275,7 @@ class Game {
 
         indicator.innerHTML = this.score
       }
+
+      
 
 }

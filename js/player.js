@@ -12,6 +12,15 @@ class Player {
       this.score = 0
     }
   
+    reset() {
+      this.x = 450;
+      this.y =75;
+      this.xDirection = 0;
+      this.yDirection = 0;
+      this.speed = 4;
+      this.score = 0
+    }
+  
     update() {
       this.y = this.y + this.yDirection * this.speed;
       this.x = this.x + this.xDirection * this.speed; 

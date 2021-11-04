@@ -1,6 +1,20 @@
-const buildDom = (html) => {
-    const main = document.querySelector("main");
-    main.innerHTML = html;
+var game = new Game();
+
+window.addEventListener('keyup', event => {
+  if (event.code === 'Enter') {
+    console.log("game.gameIsOver: ",  game.gameIsOver)
+    if(game.gameIsOver){
+      buildGameScreen()
+      console.log("Game start!")
+      game.start()
+    }
+  }
+})
+
+
+  const buildDom = (html) => {
+      const main = document.querySelector("main");
+      main.innerHTML = html;
   };
   
   // WELCOME SCREEN
@@ -12,14 +26,6 @@ const buildDom = (html) => {
     <br/>
     </div>
     `);
-    
-
-    document.addEventListener('keyup', event => {
-      if (event.code === 'Enter') {
-        buildGameScreen()
-      }
-    })
-
   };
   
   // GAME SCREEN
@@ -32,13 +38,7 @@ const buildDom = (html) => {
     <canvas id="canvas" width="600" height="600"></canvas> 
     </div>  
     </div>
-  
     `);
-  
-   
-  
-    const game = new Game();
-    game.start();
   };
   
   // GAMEOVER SCREEN
@@ -52,13 +52,6 @@ const buildDom = (html) => {
     <div class= "pointer"> </div>
     </section>
     `);
-  
-    document.addEventListener('keyup', event => {
-      if (event.code === 'Enter') {
-        buildGameScreen()
-      }
-    })
-
   };
   
   // When the window loads, then we will run the "buildSplashScreen" function
