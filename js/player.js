@@ -53,7 +53,7 @@ class Player {
     draw() {
 
       const playerImg = new Image();
-    playerImg.src = "./images/playerboat4.png"
+    playerImg.src = "images/playerboat4.png"
     this.ctx.drawImage(playerImg, this.x, this.y, this.size, this.size);
       
     

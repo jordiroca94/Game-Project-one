@@ -13,7 +13,7 @@ class Allies {
     draw() {
       
       const alliImg = new Image();
-      alliImg.src = "./images/pirate.png"
+      alliImg.src = "images/pirate.png"
       this.ctx.drawImage(alliImg, this.x, this.y, this.size, this.size);
     }
   

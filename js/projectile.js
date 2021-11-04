@@ -11,7 +11,7 @@ class Projectile {
     draw() {
 
       const projImg = new Image();
-      projImg.src = "./images/proj.png"
+      projImg.src = "images/proj.png"
       this.ctx.drawImage(projImg, this.x, this.y, this.size, this.size);
 
       // this.ctx.fillStyle = this.color;

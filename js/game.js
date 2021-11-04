@@ -243,7 +243,7 @@ class Game {
 
         let indicatorContent = "";
         for(let i =0; i<this.lives; i++){
-          indicatorContent+= "<img src='./images/heart.png'/>"
+          indicatorContent+= "<img src='images/heart.png'/>"
         }
         indicator.innerHTML = indicatorContent
       }

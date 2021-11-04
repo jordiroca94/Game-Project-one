@@ -12,7 +12,7 @@ class Obstacle {
     draw() {
       
       const obsImg = new Image();
-      obsImg.src = "./images/barrel.png"
+      obsImg.src = "images/barrel.png"
       this.ctx.drawImage(obsImg, this.x, this.y, this.size, this.size);
 
     }
