@@ -141,7 +141,7 @@ class Game {
     if (!this.gameIsOver) {
         window.requestAnimationFrame(loop);
           } else {
-            buildGameOverScreen();
+            buildGameOverScreen(this.score);
           }
         };
 

@@ -42,11 +42,11 @@ const buildDom = (html) => {
   };
   
   // GAMEOVER SCREEN
-  const buildGameOverScreen = () => {
+  const buildGameOverScreen = (score) => {
     buildDom(`
     <section class="gameoverscreen">
     <div class="gameoverheader">
-    <h1>YOUR SCORE WAS</h1>
+    <h1>YOUR SCORE WAS ${score}</h1>
     <h2 class="resetblink"> PRESS ENTER TO TRY AGAIN </h2>
     </div>
     <div class= "pointer"> </div>
