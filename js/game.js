@@ -74,7 +74,7 @@ class Game {
         this.enemies.push(new Enemies(this.ctx, x, y, 1));
       }
 
-      if (Math.random() > 0.992) {
+      if (Math.random() > 0.995) {
         const x = Math.random() * this.canvas.width;
         const y = this.canvas.height;
         this.allies.push(new Allies(this.ctx, x, y, 1));
