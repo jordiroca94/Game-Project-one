@@ -18,6 +18,7 @@ class Game {
    start() {
     // Append canvas to the DOM, create a Player and start the Canvas loop
     // Save reference to canvas and Create ctx
+
     this.canvas = document.querySelector("canvas");
     this.ctx = canvas.getContext("2d");
     this.drawLives();
@@ -107,7 +108,6 @@ class Game {
     this.checkProjectilesCollisionsAllies()
     this.drawLives()
     this.drawScore()
-    
    
 
     //CLEAR CANVAS 
