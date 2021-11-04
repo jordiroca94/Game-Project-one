@@ -44,16 +44,18 @@ const buildDom = (html) => {
   // GAMEOVER SCREEN
   const buildGameOverScreen = () => {
     buildDom(`
-    <section class="game-over">
-    <h1>Game Over</h1>
-    <button id = "game"> TRY AGAIN</button>
+    <section class="gameoverscreen">
+    <div class="gameoverheader">
+    <h1>YOUR SCORE WAS</h1>
+    <h2 class="resetblink"> PRESS ENTER TO TRY AGAIN </h2>
+    </div>
     <div class= "pointer"> </div>
     </section>
     `);
   
     document.addEventListener('keyup', event => {
       if (event.code === 'Enter') {
-        buildWelcomeScreen()
+        buildGameScreen()
       }
     })
 

@@ -24,8 +24,7 @@ class Player {
       if (direction === "up"){
          this.yDirection = -1;
          this.xDirection = 0;  
-      } 
-      else if (direction === "down"){ 
+      } else if (direction === "down"){ 
         this.yDirection = 1; 
         this.xDirection = 0;
       }else if (direction === "right"){

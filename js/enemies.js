@@ -15,9 +15,6 @@ class Enemies {
       const enemyImg = new Image();
       enemyImg.src = "../images/shark.png"
       this.ctx.drawImage(enemyImg, this.x, this.y, this.size, this.size);
-
-      // this.ctx.fillStyle = this.color;
-      // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
   
     move() {

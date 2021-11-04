@@ -65,19 +65,47 @@ body {
     flex-direction:column;
     height:100px; 
     width:100px;
+    padding:40px;
   }
 
 .score{
   display:flex; 
   text-align:start; 
   justify-content:flex-end; 
+  font-size:150px;
+  color:white;
+  margin-right:150px;
 }
     
   #canvas {
-    margin-top:-50px;
+    margin-top:-250px;
     border: 1px solid black;
     background-color:#7FDBFF; 
-   
+  }
+
+
+  /* GAME OVER SCREEN */
+
+  .gameoverscreen{
+    background-image: url("../images/gameover.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    min-width:100vh; 
+    min-height:100vh;
+  }
+
+  .gameoverheader{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:white;
+    font-size:60px;
+
+  }
+
+  .resetblink{
+    animation: blinker 1.2s linear infinite;
   }
   
  
