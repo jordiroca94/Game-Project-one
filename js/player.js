@@ -4,7 +4,7 @@ class Player {
       this.ctx = this.canvas.getContext("2d");
       this.lives = lives;
       this.size =50;
-      this.x = 450;
+      this.x = 300;
       this.y =75;
       this.xDirection = 0;
       this.yDirection = 0;
@@ -13,7 +13,7 @@ class Player {
     }
   
     reset() {
-      this.x = 450;
+      this.x = 300;
       this.y =75;
       this.xDirection = 0;
       this.yDirection = 0;
@@ -48,14 +48,14 @@ class Player {
   
     // Check if DRAW its out of CANVAS
     checkScreen() {
-      if (this.y + this.size - this.size <= 0) {
-        this.yDirection = 0;
-      } else if (this.y + this.size >= 600) {
-        this.yDirection = 0;
-      }else if(this.x + this.size -this.size <=0){
-          this.xDirection =0;
-      }else if (this.x + this.size >=600){
-          this.xDirection =0; 
+      if (this.y + this.size - this.size < 0) {
+        this.y = 0;
+      } else if (this.y + this.size > 600) {
+        this.y = 550;
+      }else if(this.x + this.size -this.size <0){
+          this.x =0;
+      }else if (this.x + this.size >600){
+          this.x =550; 
       }
     }
   
