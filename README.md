@@ -16,7 +16,7 @@ Elements that will be appearing on the screen:
 
 Player starts with 5 lifes. Game ends when you miss them. These 5 lifes are displayed on the top-left side of the screen with heart images that decrease when you lose one. Score counter is located on the top-right side of the screen.
 
-# HOW IT IS ORGANIZED? 
+# HOW IS IT ORGANIZED? 
 
 - Start screen: Welcoming screen with title and eventlistener (enter) to proceed to the GameScreen. 
 
