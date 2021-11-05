@@ -27,6 +27,8 @@ class Game {
     this.score = 0; 
     this.piratesSong = new Audio()
     this.piratesSong.src = "./music/song.mp3"
+    document.body.removeEventListener("keydown",this.handleKeyup)
+    document.body.removeEventListener("keydown",this.handleKeyDown)
   }
   
   start() {
@@ -64,9 +66,9 @@ class Game {
      if(event.code === "Space"){
        const projectile = new Projectile(this.ctx,this.player.x+20,this.player.y)
        this.projectiles.push(projectile)
-       setInterval(()=>{
-        projectile.y+=20
-       },1*30);
+      //  setInterval(()=>{
+      //   projectile.y+=20
+      //  },1*30);
      }
    }
 
@@ -106,6 +108,10 @@ class Game {
 
     //UPDATE THE PLAYER AND RANDOM OBSTACLES
     this.player.update();
+
+    this.projectiles.forEach(projectile =>{
+      projectile.move();
+    });
     this.obstacles.forEach((obstacle) => {
         obstacle.move();
       });

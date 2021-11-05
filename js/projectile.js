@@ -18,6 +18,10 @@ class Projectile {
       // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
 
+    move() {
+      this.y += 20;
+    }
+
     didCollide(obstacle) {
       if (
         this.x + this.size >= obstacle.x &&
